@@ -1,0 +1,45 @@
+.app{
+    .container{
+        
+        //Log & register
+
+        .auth{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: aqua;
+
+            h2{
+                font-size: 25px;
+                color: orange;
+                margin-bottom: 20px;
+            }
+            form{
+                display: flex;
+                flex-direction: column;
+                background-color: white;
+                padding: 20px;
+                width: 200px;
+                gap: 20px;
+
+                input{
+                    padding: 12px;
+                    border: none;
+                    border-bottom: 2px solid gray;
+                }
+                button{
+                    padding: 10px;
+                    border: none;
+                    background-color: aqua;
+                    color: white;
+                }
+                span{
+                    font-size: 12px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

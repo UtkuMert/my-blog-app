@@ -7,6 +7,8 @@ import SinglePost from "./pages/SinglePost";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
 
+import "./styles.scss"
+
 const Layout = () => {
   return (
     <>
