@@ -1,6 +1,13 @@
 .app{
+    display: flex;
+    justify-content: center;
     .container{
-        
+        width: 1024px;
+       
+        .link{
+            text-decoration: none;
+            color: inherit;
+        }
         //Log & register
 
         .auth{
@@ -39,6 +46,24 @@
                     font-size: 12px;
                     text-align: center;
                 }
+            }
+        }
+        
+        
+        //Navbar
+
+        .navbar{
+            .container{
+                padding: 10px 0px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .categories{
+                display: flex;
+                align-items: center;
+                gap: 10px;
             }
         }
     }
