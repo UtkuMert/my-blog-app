@@ -4,6 +4,7 @@ package com.project.blogapp.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,12 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.project.blogapp.entities.Post;
 import com.project.blogapp.requests.PostCreateRequest;
 import com.project.blogapp.requests.PostUpdateRequest;
+import com.project.blogapp.response.PostResponse;
 import com.project.blogapp.services.PostService;
 
 
 
 @RestController
 @RequestMapping("/api/posts")
+@CrossOrigin(origins = "http://localhost:3000")
 public class PostController {
 
 	private PostService postService;
@@ -33,7 +36,7 @@ public class PostController {
 	
 	
 	@GetMapping
-	public List<Post> getAllPosts(@RequestParam Optional<Long> userId){
+	public List<PostResponse> getAllPosts(@RequestParam Optional<Long> userId){
 		return postService.getAllPosts(userId);
 	}
 	

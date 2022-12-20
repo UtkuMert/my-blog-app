@@ -16,8 +16,6 @@ import javax.persistence.Table;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.Data;
 
 @Entity
@@ -29,10 +27,9 @@ public class Post {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	Long id;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)// fetching user info too.
 	@JoinColumn(name="user_id",nullable=false)
 	@OnDelete(action = OnDeleteAction.CASCADE) //when user delete, user's post delete too.
-	@JsonIgnore
 	User user;
 	
 	String title;

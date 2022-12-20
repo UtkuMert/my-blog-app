@@ -2,6 +2,7 @@ package com.project.blogapp.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -10,22 +11,28 @@ import com.project.blogapp.entities.User;
 import com.project.blogapp.repository.PostRepository;
 import com.project.blogapp.requests.PostCreateRequest;
 import com.project.blogapp.requests.PostUpdateRequest;
+import com.project.blogapp.response.PostResponse;
 
 @Service
 public class PostService {
-	
+
 	private PostRepository postRepository;
 	private UserService userService;
 
 	public PostService(PostRepository postRepository, UserService userService) {
 		this.postRepository = postRepository;
-		this.userService=userService;
+		this.userService = userService;
 	}
 
-	public List<Post> getAllPosts(Optional<Long> userId) {
+	public List<PostResponse> getAllPosts(Optional<Long> userId) {
+		List<Post> postList;
 		if(userId.isPresent())
-			return postRepository.findByUserId(userId.get());
-		return postRepository.findAll();
+			postList = postRepository.findByUserId(userId.get());
+			else {
+				postList = postRepository.findAll();
+			}
+		return postList.stream().map(p-> new PostResponse(p)).collect(Collectors.toList());
+		
 	}
 
 	public Post getPostById(Long postId) {
@@ -34,9 +41,9 @@ public class PostService {
 
 	public Post createPost(PostCreateRequest newPostRequest) {
 		User user = userService.getUserById(newPostRequest.getUserId());
-		if(user == null)
+		if (user == null)
 			return null;
-		
+
 		Post toSave = new Post();
 		toSave.setTitle(newPostRequest.getTitle());
 		toSave.setDescription(newPostRequest.getDescription());
@@ -46,11 +53,11 @@ public class PostService {
 
 	public Post updatePost(Long postId, PostUpdateRequest updatePost) {
 		Optional<Post> post = postRepository.findById(postId);
-		if(post.isPresent()) {
+		if (post.isPresent()) {
 			Post toUpdate = post.get();
 			toUpdate.setDescription(updatePost.getDescription());
 			toUpdate.setTitle(updatePost.getTitle());
-			
+
 			postRepository.save(toUpdate);
 			return toUpdate;
 		}
@@ -59,8 +66,7 @@ public class PostService {
 
 	public void deletePostById(Long postId) {
 		postRepository.deleteById(postId);
-		
+
 	}
-	
-	
+
 }
