@@ -27,7 +27,7 @@ public class Post {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	Long Id;
+	Long id;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="user_id",nullable=false)
