@@ -1,16 +1,17 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Home = () => {
 
   const [posts,setPosts] = useState([]);
+  const cat = useLocation().search;
   
   useEffect(()=>{
    const fetchData = async () => {
     try {
-      const res = await axios.get("/posts");
+      const res = await axios.get(`/posts${cat}`);
       console.log(res);
       setPosts(res.data);
     } catch (err) {
@@ -18,7 +19,7 @@ const Home = () => {
     }
    };
    fetchData();
-  },[]);
+  },[cat]);
   // const posts = [
   //   {
   //     id: 1,
