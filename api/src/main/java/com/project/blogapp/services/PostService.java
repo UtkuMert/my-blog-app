@@ -1,5 +1,6 @@
 package com.project.blogapp.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -48,6 +49,7 @@ public class PostService {
 		toSave.setTitle(newPostRequest.getTitle());
 		toSave.setDescription(newPostRequest.getDescription());
 		toSave.setUser(user);
+		toSave.setCreatedDate(new Date());
 		return postRepository.save(toSave);
 	}
 

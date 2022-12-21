@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.project.blogapp.entities.User;
 import com.project.blogapp.requests.UserRegisterRequest;
 import com.project.blogapp.requests.UserRequest;
+import com.project.blogapp.response.AuthResponse;
 import com.project.blogapp.security.JwtTokenProvider;
 import com.project.blogapp.services.UserService;
 
@@ -38,26 +39,34 @@ public class AuthController {
 	}
 
 	@PostMapping("/login")
-	public String login(@RequestBody UserRequest loginRequest) {
+	public AuthResponse login(@RequestBody UserRequest loginRequest) {
 		UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(loginRequest.getUserName(), loginRequest.getPassword());
 		Authentication auth = authenticationManager.authenticate(authToken);
 		SecurityContextHolder.getContext().setAuthentication(auth);
 		String jwtToken = jwtTokenProvider.generateJwtToken(auth);
-		
-		return "Bearer " + jwtToken;
+		User user = userService.getUserByUserName(loginRequest.getUserName());
+		AuthResponse authResponse = new AuthResponse();
+		authResponse.setMessage("Bearer " + jwtToken);
+		authResponse.setUserId(user.getId());
+		return authResponse;
 	}
 	
 	@PostMapping("/register")
-		public ResponseEntity<String> register(@RequestBody UserRegisterRequest registerRequest){
-		if(userService.getUserByUserName(registerRequest.getUserName()) != null)
-			return new ResponseEntity<>("Username already exist.",HttpStatus.BAD_REQUEST);
+		public ResponseEntity<AuthResponse> register(@RequestBody UserRegisterRequest registerRequest){
+		AuthResponse authResponse = new AuthResponse();
+		if(userService.getUserByUserName(registerRequest.getUserName()) != null) {
+			authResponse.setMessage("Username already exist.");
+			return new ResponseEntity<>(authResponse,HttpStatus.BAD_REQUEST);
+		}
+			
 		
 		User user = new User();
 		user.setUserName(registerRequest.getUserName());
 		user.setEmail(registerRequest.getEmail());
 		user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
 		userService.createUser(user);
-		return new ResponseEntity<>("Successfull",HttpStatus.CREATED);
+		authResponse.setMessage("Registered successfully");
+		return new ResponseEntity<>(authResponse,HttpStatus.CREATED);
 	}
 	
 }
