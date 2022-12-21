@@ -7,5 +7,7 @@ public class PostUpdateRequest {
 
 	String title;
 	String description;
+	String category;
+	String imgUrl;
 
 }

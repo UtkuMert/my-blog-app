@@ -12,6 +12,8 @@ public class PostResponse {
 	String userName;
 	String title;
 	String description;
+	String category;
+	String imgUrl;
 	
 	public PostResponse(Post entity) {
 		this.id = entity.getId();
@@ -19,5 +21,7 @@ public class PostResponse {
 		this.userName = entity.getUser().getUserName();
 		this.title=entity.getTitle();
 		this.description=entity.getDescription();
+		this.category=entity.getCategory();
+		this.imgUrl=entity.getImgUrl();
 	}
 }

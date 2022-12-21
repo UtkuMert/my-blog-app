@@ -1,6 +1,6 @@
 package com.project.blogapp.entities;
 
-import java.time.LocalDateTime;
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -36,6 +36,9 @@ public class Post {
 	User user;
 	
 	String title;
+	String category;
+	String imgUrl;
+
 	@Lob
 	@Column(columnDefinition="text")
 	String description;

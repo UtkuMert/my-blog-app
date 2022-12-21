@@ -7,4 +7,5 @@ public class PostCreateRequest {
 	String description;
 	String title;
 	Long userId;
+	String category;
 }

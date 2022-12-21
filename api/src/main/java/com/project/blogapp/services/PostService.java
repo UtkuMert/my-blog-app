@@ -25,11 +25,13 @@ public class PostService {
 		this.userService = userService;
 	}
 
-	public List<PostResponse> getAllPosts(Optional<Long> userId) {
+	public List<PostResponse> getAllPostsWithParam(Optional<Long> userId, Optional<String> cat) {
 		List<Post> postList;
-		if(userId.isPresent())
+		if(userId.isPresent()) {
 			postList = postRepository.findByUserId(userId.get());
-			else {
+		}else if(cat.isPresent()){
+			postList = postRepository.findByCategory(cat.get());
+		}else {
 				postList = postRepository.findAll();
 			}
 		return postList.stream().map(p-> new PostResponse(p)).collect(Collectors.toList());
@@ -70,5 +72,6 @@ public class PostService {
 		postRepository.deleteById(postId);
 
 	}
+
 
 }
