@@ -48,7 +48,7 @@ public class AuthController {
 		String jwtToken = jwtTokenProvider.generateJwtToken(auth);
 		User user = userService.getUserByUserName(loginRequest.getUserName());
 		AuthResponse authResponse = new AuthResponse();
-		authResponse.setMessage("Bearer " + jwtToken);
+		authResponse.setMessage(jwtToken);
 		authResponse.setUserId(user.getId());
 		authResponse.setUserName(user.getUserName());
 		return authResponse;

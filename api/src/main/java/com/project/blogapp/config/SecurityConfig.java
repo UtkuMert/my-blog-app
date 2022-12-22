@@ -77,6 +77,8 @@ public class SecurityConfig {
     		.authorizeRequests()
     		.antMatchers(HttpMethod.GET, "/api/posts")
     		.permitAll()
+    		.antMatchers(HttpMethod.GET, "/api/posts/{postId}")
+    		.permitAll()
     		.antMatchers(HttpMethod.GET, "/api/comments")
     		.permitAll()
     		.antMatchers("/api/auth/**")

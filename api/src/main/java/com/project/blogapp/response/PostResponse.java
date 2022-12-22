@@ -1,5 +1,7 @@
 package com.project.blogapp.response;
 
+import java.util.Date;
+
 import com.project.blogapp.entities.Post;
 
 import lombok.Data;
@@ -14,6 +16,7 @@ public class PostResponse {
 	String description;
 	String category;
 	String imgUrl;
+	Date createdDate;
 	
 	public PostResponse(Post entity) {
 		this.id = entity.getId();
@@ -23,5 +26,6 @@ public class PostResponse {
 		this.description=entity.getDescription();
 		this.category=entity.getCategory();
 		this.imgUrl=entity.getImgUrl();
+		this.createdDate=entity.getCreatedDate();
 	}
 }

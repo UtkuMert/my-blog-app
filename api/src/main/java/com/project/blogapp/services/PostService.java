@@ -51,6 +51,7 @@ public class PostService {
 		toSave.setTitle(newPostRequest.getTitle());
 		toSave.setDescription(newPostRequest.getDescription());
 		toSave.setUser(user);
+		toSave.setImgUrl(newPostRequest.getImgUrl());
 		toSave.setCreatedDate(new Date());
 		return postRepository.save(toSave);
 	}
@@ -61,7 +62,7 @@ public class PostService {
 			Post toUpdate = post.get();
 			toUpdate.setDescription(updatePost.getDescription());
 			toUpdate.setTitle(updatePost.getTitle());
-
+			toUpdate.setImgUrl(updatePost.getImgUrl());
 			postRepository.save(toUpdate);
 			return toUpdate;
 		}
