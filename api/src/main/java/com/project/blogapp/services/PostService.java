@@ -53,6 +53,7 @@ public class PostService {
 		toSave.setUser(user);
 		toSave.setImgUrl(newPostRequest.getImgUrl());
 		toSave.setCreatedDate(new Date());
+		toSave.setCategory(newPostRequest.getCategory());
 		return postRepository.save(toSave);
 	}
 
