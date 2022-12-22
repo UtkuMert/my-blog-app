@@ -53,9 +53,9 @@ const SinglePost = () => {
           />
           <div className="info">
             <span>{post?.user?.userName}</span>
-            <p>Posted {moment(post.createdDate).fromNow}</p>
+            <p>Posted {post.createdDate}</p>
           </div>
-          {currentUser.userName === post?.user?.userName && (
+          {currentUser?.userName === post?.user?.userName && (
             <div className="edit">
               <Link to={`/post?edit=1`} state={post}>
                 <AiFillEdit className="editButton" />

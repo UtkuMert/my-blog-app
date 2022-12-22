@@ -8,15 +8,9 @@ import { AuthContext } from "../context/authContext";
 
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
-// axios.interceptors.request.use(
-//   config => {
-//     config.headers.authorization = `Bearer ${token}`;
-//     return config;
-//   },
-//   error => {
-//     return Promise.reject(error)
-//   }
-// )
+
+
+
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
@@ -34,6 +28,7 @@ const Post = () => {
     e.preventDefault();
     //console.log(file.name);
     //console.log(description);
+    console.log(category);
     const imgUrl = file?.name;
     try {
       state
@@ -61,7 +56,7 @@ const Post = () => {
           setOpen(true);
         
             
-      navigate("/");
+      //navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -80,10 +75,9 @@ const Post = () => {
         <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
           Your post uploaded.
         </Alert>
-        <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
-          Something went wrong!
-        </Alert>
       </Snackbar>
+   
+      
       <div className="addPost">
         <div className="content">
           <input
