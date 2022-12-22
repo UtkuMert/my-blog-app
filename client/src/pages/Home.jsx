@@ -20,6 +20,7 @@ const Home = () => {
    };
    fetchData();
   },[cat]);
+
   // const posts = [
   //   {
   //     id: 1,
@@ -43,6 +44,11 @@ const Home = () => {
   //     img: "https://picsum.photos/200",
   //   },
   // ];
+
+  const getText = (html) =>{
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return doc.body.textContent // prevented to html tags
+  }
   return (
     <div className="home">
       <div className="posts">
@@ -55,7 +61,7 @@ const Home = () => {
               <Link className="link" to={`/post/${post.id}`}>
                 <h1>{post.title}</h1>
               </Link>
-              <p>{post.description}</p>
+              <p>{getText(post.description)}</p>
               <button>Read more...</button>
             </div>
           </div>

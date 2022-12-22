@@ -9,10 +9,9 @@ const SinglePost = () => {
   const location = useLocation();
   const postId = location.pathname.split("/")[2]; // split the id from URL
   const navigate = useNavigate();
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser,token } = useContext(AuthContext);
 
-  let user = JSON.parse(localStorage.getItem("user"));
-  const token = user?.message;
+
  
   useEffect(() => {
     const fetchData = async () => {
@@ -37,9 +36,13 @@ const SinglePost = () => {
       console.log(err);
     }
   };
-
+  const getText = (html) =>{
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return doc.body.textContent // prevented to html tags
+  }
   return (
     <div className="single">
+      
       <div className="content">
         <img src={post?.imgUrl} alt="" />
         <div className="user">
@@ -63,7 +66,7 @@ const SinglePost = () => {
           )}
         </div>
         <h1>{post?.title}</h1>
-        <p>{post?.description}</p>
+        <p>{getText(post?.description)}</p>
       </div>
       <div className="menu">m</div>
     </div>
