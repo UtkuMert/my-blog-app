@@ -33,8 +33,9 @@ const Login = () => {
   };
   return (
     <div className="auth">
-      <h2>Login</h2>
+     
       <form>
+        <h2>Login</h2>
         <input
           type="text"
           placeholder="Enter your username"

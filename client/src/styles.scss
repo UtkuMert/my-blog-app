@@ -16,21 +16,25 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background-color: aqua;
-
+            background-color:rgb(193,190,255);
+            border-radius: 10px;
             h2{
                 font-size: 25px;
-                color: orange;
+                display: flex;
+                color: gray;
                 margin-bottom: 20px;
+                align-items: center;
+                justify-content: center;
             }
             form{
                 display: flex;
                 flex-direction: column;
                 background-color: white;
                 padding: 20px;
-                width: 200px;
+                width: 50%;
                 gap: 20px;
-
+                border-radius: 10px;
+                
                 input{
                     padding: 12px;
                     border: none;
@@ -39,8 +43,10 @@
                 button{
                     padding: 10px;
                     border: none;
-                    background-color: aqua;
+                    background-color: #938eef;
                     color: white;
+                    font-weight: bold;
+                    cursor: pointer;
                 }
                 span{
                     font-size: 12px;
@@ -96,18 +102,15 @@
                 display: flex;
                 flex-direction: column;
                 gap: 150px;
-               
                 .post{
                     display: flex;
                     gap: 100px;
                     border-bottom: 2px solid black;
                     padding-bottom: 50px;
                    
-
                     &:nth-child(2n+1){ //it means odd number
                         flex-direction: row-reverse;
                     }
-
                     .img{
                         flex: 2;
                         position: relative;
@@ -122,7 +125,6 @@
                          left: -20px;
                          z-index: -1;
                         }
-
                         img{
                             width: 100%;
                             max-height: 400px;
@@ -181,6 +183,8 @@
                     align-items: center;
                     gap: 10px;
                     font-size: 14px;
+                    border-bottom: 2px solid black;
+                    padding-bottom: 10px;
                     img{
                         width: 50px;
                         height: 50px;
@@ -203,15 +207,48 @@
                 }
                 h1{
                     font-size: 48px; 
-                    
                 }
                 p{
                     text-align: justify;
                     line-height: 20px;
                 }
             }
-            .menu{
+            .otherPost{
                 flex: 2;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                h1{
+                    font-size: 20px;
+                    color: #555;
+                }
+                .post{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+
+                    img{
+                        width: 100%;
+                        height: 200px;
+                        object-fit: cover;
+                    }
+                    h2{
+                        columns: #555;
+                    }
+                    button{
+                        width: max-content;
+                        padding: 5px 10px;
+                        border: none;
+                        background-color: white;
+                        border: 1px solid #1E90FF;
+                        cursor: pointer;
+
+                        &:hover{
+                            border: 1px solid white;
+                            background-color: #1E90FF;
+                        }
+                    }
+                }
             }
         }
 

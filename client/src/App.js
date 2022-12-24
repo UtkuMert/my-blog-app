@@ -5,6 +5,7 @@ import Post from "./pages/Post";
 import Register from "./pages/Register";
 import SinglePost from "./pages/SinglePost";
 import Home from "./pages/Home";
+import User from "./pages/User"
 import Footer from "./components/Footer";
 
 import "./styles.scss"
@@ -28,6 +29,10 @@ function App() {
         {
           path: "/",
           element: <Home />,
+        },
+        {
+          path: "/user",
+          element: <User />,
         },
         {
           path: "/post/:id",
