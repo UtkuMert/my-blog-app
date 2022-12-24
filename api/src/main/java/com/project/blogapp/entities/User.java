@@ -16,4 +16,5 @@ public class User {
 	String userName;
 	String email;
 	String password;
+	int userAvatar;
 }

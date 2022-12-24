@@ -30,9 +30,9 @@ public class Post {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	Long id;
 	
-	@ManyToOne(fetch = FetchType.EAGER)// fetching user info too.
+	@ManyToOne(fetch = FetchType.EAGER)								// fetching user info too.
 	@JoinColumn(name="user_id",nullable=false)
-	@OnDelete(action = OnDeleteAction.CASCADE) //when user delete, user's post delete too.
+	@OnDelete(action = OnDeleteAction.CASCADE) 						//when user delete, user's post delete too.
 	User user;
 	
 	String title;

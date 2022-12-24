@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.blogapp.entities.User;
+import com.project.blogapp.response.UserResponse;
 import com.project.blogapp.services.UserService;
 
 @RestController
@@ -36,9 +37,9 @@ public class UserController {
 	}
 	
 	@GetMapping("/{userId}")
-	public User getUserById(@PathVariable Long userId) {
+	public UserResponse getUserById(@PathVariable Long userId) {
 		//custom exception
-		return userService.getUserById(userId);
+		return new UserResponse(userService.getUserById(userId));
 	}
 	
 	@PutMapping("/{userId}")
